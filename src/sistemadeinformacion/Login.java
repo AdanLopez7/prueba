@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 package sistemadeinformacion;
-
+import java.sql.*;
 /**
  *
  * @author Adan
  */
 public class Login extends javax.swing.JFrame {
 
+    Connection miConexion;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -98,6 +100,9 @@ public class Login extends javax.swing.JFrame {
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
         // TODO add your handling code here:
+        conexionBBDD c=new conexionBBDD();
+        c.conexionIniciarSesion();
+        
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     /**
@@ -135,6 +140,80 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    private class conexionBBDD{
+        
+        
+        public void conexionIniciarSesion()
+        {
+         try{
+           
+         //1 Crear Conexion 
+          miConexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_sis2","root","");   
+         // 2 creae objeto statement
+          Statement miStatement=miConexion.createStatement();
+         //3 ejecutar SQL
+          ResultSet miResult=miStatement.executeQuery("SELECT * FROM estudiantes");
+          while(miResult.next())
+          {
+              if(miResult.getString(1).equals(campoUsuario.getText())&&miResult.getString(2).equals(campoContra.getText()))
+              {
+                  
+                 InterfazEstudiante e=new InterfazEstudiante();
+                 e.ejecutar();
+              }
+              
+          }
+          
+          iniciarSesionDocente();
+          
+        }catch(Exception e){
+            
+            
+            
+            System.out.println("no se conecto");
+            
+        }
+         
+         
+         
+      }
+        
+      public void iniciarSesionDocente()
+      {
+            try{
+           
+         //1 Crear Conexion 
+          miConexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_sis2","root","");   
+         // 2 creae objeto statement
+          Statement miStatement=miConexion.createStatement();
+         //3 ejecutar SQL
+          ResultSet miResult=miStatement.executeQuery("SELECT * FROM docentes");
+          while(miResult.next())
+          {
+              if(miResult.getString(1).equals(campoUsuario.getText())&&miResult.getString(2).equals(campoContra.getText()))
+              {
+                  
+                InterfazDocente d=new InterfazDocente();
+                d.ejecutar();
+                 
+                  
+              }
+              
+          }
+          
+        }catch(Exception e){
+            
+            
+            
+            System.out.println("no se conecto");
+            
+        }
+        
+      }
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton botonIniciarSesion;
