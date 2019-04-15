@@ -112,7 +112,7 @@ public class InterfazRegistro extends javax.swing.JFrame {
          int i=SeleccionCombo.getSelectedIndex();
         if(i==0)
         {
-            JOptionPane.showMessageDialog(this,"seleccione el tipo de usuario");
+            JOptionPane.showMessageDialog(this,"seleccione el  tipo de usuario");
         }else
         {
             if(i==1)
