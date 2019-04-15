@@ -215,7 +215,7 @@ public class InterfazRegistro extends javax.swing.JFrame {
         });
     }
     
-   
+   //modificando
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
