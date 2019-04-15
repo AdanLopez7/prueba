@@ -1,6 +1,8 @@
 
 package sistemadeinformacion;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -64,6 +66,11 @@ public class InterfazRegistro extends javax.swing.JFrame {
         });
         getContentPane().add(campoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 160, 30));
 
+        campoCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoCorreoFocusLost(evt);
+            }
+        });
         campoCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCorreoActionPerformed(evt);
@@ -96,6 +103,8 @@ public class InterfazRegistro extends javax.swing.JFrame {
 
     private void campoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCorreoActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_campoCorreoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -120,6 +129,31 @@ public class InterfazRegistro extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void campoCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCorreoFocusLost
+        // TODO add your handling code here:
+        
+        String email=campoCorreo.getText();
+        boolean comprobacion=false;
+        
+        for(int i=0;i<email.length();i++)
+        {
+            if(email.charAt(i)=='@')
+            {
+                comprobacion=true;
+            }
+        }
+        
+        if(comprobacion)
+        {
+            System.out.println("correcto");
+            
+        }else
+        {
+            System.out.println("incorrecto");
+        }
+        
+    }//GEN-LAST:event_campoCorreoFocusLost
 
 
     public static void main(String args[]) {
@@ -180,6 +214,8 @@ public class InterfazRegistro extends javax.swing.JFrame {
             }
         });
     }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;

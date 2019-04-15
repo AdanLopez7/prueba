@@ -1,6 +1,7 @@
 
 package sistemadeinformacion;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Adan
@@ -136,6 +137,7 @@ public class Login extends javax.swing.JFrame {
                   
                  InterfazEstudiante e=new InterfazEstudiante();
                  e.ejecutar();
+                 return;
               }
               
           }
@@ -171,11 +173,12 @@ public class Login extends javax.swing.JFrame {
                   
                 InterfazDocente d=new InterfazDocente();
                 d.ejecutar();
-                 
+               return; 
                   
               }
               
           }
+          JOptionPane.showMessageDialog(null,"introduzca tu usuario");
           
         }catch(Exception e){
             
