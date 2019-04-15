@@ -181,7 +181,7 @@ public class InterfazRegistro extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this,"GUARDADO");
         }catch(Exception error)
         {
-            System.out.println("no se puede conectar a base de datos");
+            System.out.println("no se puede conectar a base de datos  ");
         }
         
     }
